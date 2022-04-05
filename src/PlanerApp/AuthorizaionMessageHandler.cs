@@ -11,9 +11,9 @@ public class AuthorizaionMessageHandler : DelegatingHandler
 
     protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        if (await _storage.ContainKeyAsync("access-token"))
+        if (await _storage.ContainKeyAsync("access_token"))
         {
-            var token = await _storage.GetItemAsStringAsync("access-token");
+            var token = await _storage.GetItemAsStringAsync("access_token");
             request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
         Console.WriteLine("Handler called");
